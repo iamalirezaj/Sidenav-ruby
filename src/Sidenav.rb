@@ -46,9 +46,9 @@ class Sidenav
 
 		@routes.push(name)
 
-		item = add(name,callback)
+		item = self.add(name,callback)
 
-		if check_group_name(@group)
+		if self.check_group_name(@group)
 			@menu[@group].push(item)
 		else
 			@menu.push(item)
