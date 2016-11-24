@@ -8,7 +8,9 @@ class Menu
 	#
 	# @author Alireza Josheghani <a.josheghani@anetwork.ir>
 	# @since 24 Nov 2016
-	def link(link)
+  # @param [string] link
+  # @return [string]
+  def link(link)
 		@link = link
 	end
 
@@ -17,7 +19,9 @@ class Menu
 	#
 	# @author Alireza Josheghani <a.josheghani@anetwork.ir>
 	# @since 24 Nov 2016
-	def title(title)
+  # @param [string] title
+  # @return [Object]
+  def title(title)
 		@title = title
 	end
 
@@ -26,10 +30,11 @@ class Menu
 	#
 	# @author Alireza Josheghani <a.josheghani@anetwork.ir>
 	# @since 24 Nov 2016
-	def make(group = nil ,results)
-		return {
-			'title' => @title,
-			'link' => @link
+	# @return [Object]
+	def make
+		{
+				:title => @title,
+				:link => @link
 		}
 	end
 	
