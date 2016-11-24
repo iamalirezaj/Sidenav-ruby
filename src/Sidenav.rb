@@ -8,9 +8,10 @@ class Sidenav
 	#
 	# @author Alireza Josheghani <a.josheghani@anetwork.ir>
 	# @since 24 Nov 2016
-	def initialize
-		@menu = Hash.new()
-		@routes = Array.new()
+  # @return [object]
+  def initialize
+		@menu = Hash.new
+		@routes = Array.new
 	end
 
 	##
@@ -18,7 +19,9 @@ class Sidenav
 	#
 	# @author Alireza Josheghani <a.josheghani@anetwork.ir>
 	# @since 24 Nov 2016
-	def group(name,callback)
+  # @param [string] name
+  # @param [lambda] callback
+  def group(name,callback)
 		# set group menu name
 		@group = name
 
@@ -26,7 +29,7 @@ class Sidenav
 		@menu[name] = []
 
 		# run callback lambda
-		callback.call()
+		callback.call
 	end
 
 	##
@@ -34,15 +37,18 @@ class Sidenav
 	#
 	# @author Alireza Josheghani <a.josheghani@anetwork.ir>
 	# @since 24 Nov 2016
-	def register(name,callback)
+  # @param [string] name
+  # @param [lambda] callback
+  # @return [Object]
+  def register(name,callback)
 
-		@currentRoute = name
+		@current_route = name
 
 		@routes.push(name)
 
 		item = add(name,callback)
 
-		if(checkGroupName(@group))
+		if check_group_name(@group)
 			@menu[@group].push(item)
 		else
 			@menu.push(item)
@@ -54,12 +60,15 @@ class Sidenav
 	#
 	# @author Alireza Josheghani <a.josheghani@anetwork.ir>
 	# @since 24 Nov 2016
-	def add(item,callback)
-		menuObject = Menu.new
+  # @param [string] item
+  # @param [lambda] callback
+  # @return [Object]
+  def add(item,callback)
+		menu_object = Menu.new
 
-		callback.call(menuObject)
+		callback.call(menu_object)
 
-		return menuObject.make(item)
+		menu_object.make(item)
 	end
 
 	##
@@ -67,15 +76,23 @@ class Sidenav
 	#
 	# @author Alireza Josheghani <a.josheghani@anetwork.ir>
 	# @since 24 Nov 2016
-	def checkGroupName(group)
-		if(group != nil)
-            return true;
-        else
-        	return false;
-        end
+  # @param [string] group
+  # @return [bool]
+  def check_group_name(group)
+		if group != nil
+			true
+    else
+      false;
+		end
 	end
 
-	def routes
+  ##
+  # get registered routes
+  #
+  # @author Alireza Josheghani <a.josheghani@anetwork.ir>
+  # @since 24 Nov 2016
+  # @return [Object]
+  def routes
 		puts @routes
 	end
 
@@ -84,8 +101,9 @@ class Sidenav
 	#
 	# @author Alireza Josheghani <a.josheghani@anetwork.ir>
 	# @since 24 Nov 2016
-	def render(group = nil)
-		if(group != nil)
+  # @param [Object] group
+  def render(group = nil)
+		if group != nil
 			puts @menu[group]
 		else
 			puts @menu
