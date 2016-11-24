@@ -59,7 +59,12 @@ class Menu
     self.set_item_name(item)
 
     # return render object
-		{ route: @route, title: @title, link: @link }
+		{
+        route: @route,
+        title: @title,
+        link: @link ,
+        icon: @icon
+    }
 
 	end
 	
